@@ -92,8 +92,18 @@ class TermOrdValComparator_SML extends FieldComparator<Comparable> {
   }
 
   @Override
+  public void setTopValue(Comparable comparable) {
+
+  }
+
+  @Override
   public int compareBottom(int doc) {
     throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public int compareTop(int i) throws IOException {
+    return 0;
   }
 
   @Override
@@ -249,6 +259,11 @@ class TermOrdValComparator_SML extends FieldComparator<Comparable> {
     }
 
     @Override
+    public void setTopValue(BytesRef bytesRef) {
+
+    }
+
+    @Override
     public int compareBottom(int doc) {
       assert bottomSlot != -1;
       int order = termsIndex.getOrd(doc);
@@ -280,6 +295,11 @@ class TermOrdValComparator_SML extends FieldComparator<Comparable> {
           return bottomValue.compareTo(tempBR);
         }
       }
+    }
+
+    @Override
+    public int compareTop(int i) throws IOException {
+      return 0;
     }
 
     @Override
